@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<ctype.h>
 #include"hangman.h"
 
 int main(){
@@ -23,6 +24,7 @@ int main(){
             printa_forca(tentativas);
             printa_palavra(palavra);
             scanf(" %c", &palpite);
+            palpite = toupper(palpite);
             acerto = checa_palpite(palavra, palpite);
             if(!acerto) tentativas--;
         }while(!checa_completude(palavra) && tentativas != 0);
