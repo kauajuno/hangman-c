@@ -1,13 +1,16 @@
 #include<stdio.h>
+#include"hangman.h"
 
 int main(){
 
     int dificuldade;
     FILE* fp;
+    Pilha* pi = cria_pilha();
     char palavra[30];
 
     abertura();
     escolhe_dificuldade(&fp);
+    preenche_pilha(pi, &fp);
 
     /*
     Utilizado pra testar se o arquivo tá realmente sendo aberto!
