@@ -18,6 +18,7 @@ Pilha* cria_pilha(){
     return aux;
 }
 
+// insere um elemento com uma determinada palavra na pilha, sub-rotina do preenche_pilha
 void insere_pilha(Pilha* pilha, char* str){
     if(pilha == NULL)
         return;
@@ -31,14 +32,120 @@ void insere_pilha(Pilha* pilha, char* str){
             elem->nxt = pilha->topo;
         }
         pilha->topo = elem;
+        pilha->qtd++;
     }
 }
 
+// preenche a pilha com palavras contidas no arquivo
 void preenche_pilha(Pilha* pilha, FILE** file){
     char pal[30];
     while(fgets(pal, sizeof(pal), *file) != NULL){
         insere_pilha(pilha, pal);
     }
+}
+
+// copia a palavra contida no elemento mais de cima da pilha para a string passada no parâmetro
+int get_topo_pilha(Pilha* pilha, char* st){
+    if(pilha == NULL)
+        return 0;
+    if(pilha->topo == NULL)
+        return 0;
+    strcpy(st, pilha->topo->palavra);
+    return 1;
+}
+
+// remove o elemento no topo da pilha
+int pop_pilha(Pilha* pilha){
+    if(pilha == NULL)
+        return 0;
+    if(pilha->topo == NULL)
+        return 0;
+    Elem* aux = pilha->topo;
+    pilha->topo = pilha->topo->nxt;
+    free(aux);
+    pilha->qtd--;
+    return 1;
+}
+
+Letra* cria_palavra(){
+    Letra* p = (Letra*) malloc(sizeof(Letra));
+    if(p != NULL){
+        p->nxt = NULL;
+    }
+    return p;
+}
+
+void insere_palavra(Letra* l, char letra){
+    if(l == NULL)
+        return;
+    Letra* aux = l;
+    Letra* nova_letra = (Letra*) malloc(sizeof(Letra));
+    if(nova_letra != NULL){
+        nova_letra->letra = letra;
+        nova_letra->adivinhada = 0;
+        nova_letra->nxt = NULL;
+
+        while(aux->nxt != NULL)
+            aux = aux->nxt;
+
+        aux->nxt = nova_letra;
+    }
+}
+
+void prepara_palavra(Pilha* pilha, Letra* palavra_list, char* palavra){
+    int index = 0;
+    get_topo_pilha(pilha, palavra);
+    while(palavra[index] != '\0'){
+        insere_palavra(palavra_list, palavra[index]);
+        index++;
+    }
+}
+
+void printa_palavra(Letra* palavra_list){
+    Letra* aux = palavra_list->nxt;
+    while(aux != NULL){
+        if(aux->adivinhada)
+            printf("%c ", aux->letra);
+        else
+            printf("_ ");
+        aux = aux->nxt;
+    }
+    printf("\n");
+}
+
+int checa_palpite(Letra* palavra_list, char palpite){
+    int ocorrencias = 0;
+    Letra* aux = palavra_list->nxt;
+    while(aux != NULL){
+        if(palpite == aux->letra){
+            ocorrencias++;
+            aux->adivinhada = 1;
+        }
+        // printf("SPOILER! AQUI DEVERIA TER UM %c\n", aux->letra);
+        aux = aux->nxt;
+    }
+    if(ocorrencias == 0){
+        printf("A LETRA %c NAO ESTA NESSA PALAVRA.\n", palpite);
+        return 0;
+    }
+    printf("A LETRA %c FOI ENCONTRADA %d VEZES!\n", palpite, ocorrencias);
+    return 1;
+}
+
+int checa_completude(Letra* palavra){
+    int complete = 1;
+    Letra* aux = palavra->nxt;
+    while(aux != NULL){
+        if(!aux->adivinhada){
+            complete = 0;
+            break;
+        }
+    }
+    return complete;
+}
+
+void free_palavra(Letra* p){
+    free(p);
 }
 
 void abertura(){
