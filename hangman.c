@@ -140,6 +140,7 @@ int checa_completude(Letra* palavra){
             complete = 0;
             break;
         }
+        aux = aux->nxt;
     }
     return complete;
 }
