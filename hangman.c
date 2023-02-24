@@ -180,3 +180,87 @@ void escolhe_dificuldade(FILE** file){
     else
         *file = fopen("dificil.txt", "r");
 }
+
+void printa_forca(int num){
+    switch(num){
+        case 7:
+            printf(" ____\n");
+            printf("|    |\n");
+            printf("|\n");
+            printf("|\n");
+            printf("|\n");
+            printf("|\n");
+            printf("|\n");
+            break;
+
+        case 6:
+            printf(" ____\n");
+            printf("|    |\n");
+            printf("|   (_)\n");
+            printf("|\n");
+            printf("|\n");
+            printf("|\n");
+            printf("|\n");
+            break;
+
+        case 5:
+            printf(" ____\n");
+            printf("|    |\n");
+            printf("|   (_)\n");
+            printf("|    |\n");
+            printf("|    |\n");
+            printf("|\n");
+            printf("|\n");
+            break;
+
+        case 4:
+            printf(" ____\n");
+            printf("|    |\n");
+            printf("|   (_)\n");
+            printf("|    |\n");
+            printf("|    |\n");
+            printf("|   /\n");
+            printf("|\n");
+            break;
+
+        case 3:
+            printf(" ____\n");
+            printf("|    |\n");
+            printf("|   (_)\n");
+            printf("|    |\n");
+            printf("|    |\n");
+            printf("|   / \\\n");
+            printf("|\n");
+            break;
+
+        case 2:
+            printf(" ____\n");
+            printf("|    |\n");
+            printf("|   (_)\n");
+            printf("|   /|\n");
+            printf("|    |\n");
+            printf("|   / \\\n");
+            printf("|\n");
+            break;
+
+        case 1:
+            printf(" ____\n");
+            printf("|    |\n");
+            printf("|   (_)\n");
+            printf("|   /|\\\n");
+            printf("|    |\n");
+            printf("|   / \\\n");
+            printf("|\n");
+            break;
+
+        case 0:
+            printf(" ____\n");
+            printf("|    |\n");
+            printf("|   (X)    VOCÊ PERDEU!\n");
+            printf("|   /|\\\n");
+            printf("|    |\n");
+            printf("|   / \\\n");
+            printf("|\n");
+            break;
+        } 
+}

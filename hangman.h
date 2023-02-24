@@ -26,3 +26,4 @@ void printa_palavra(Letra* palavra_list);
 int checa_palpite(Letra* palavra, char palpite);
 int checa_completude(Letra* palavra);
 void free_palavra(Letra* p);
+void printa_forca(int num);
