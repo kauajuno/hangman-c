@@ -95,7 +95,7 @@ void insere_palavra(Letra* l, char letra){
 void prepara_palavra(Pilha* pilha, Letra* palavra_list, char* palavra){
     int index = 0;
     get_topo_pilha(pilha, palavra);
-    while(palavra[index] != '\0'){
+    while(palavra[index] != '\0' && palavra[index] != '\n'){
         insere_palavra(palavra_list, palavra[index]);
         index++;
     }
