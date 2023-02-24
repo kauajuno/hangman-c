@@ -125,10 +125,14 @@ int checa_palpite(Letra* palavra_list, char palpite){
         aux = aux->nxt;
     }
     if(ocorrencias == 0){
-        printf("A LETRA %c NAO ESTA NESSA PALAVRA.\n", palpite);
+        printf("\nA LETRA %c NAO ESTA NESSA PALAVRA.\n", palpite);
         return 0;
     }
-    printf("A LETRA %c FOI ENCONTRADA %d VEZES!\n", palpite, ocorrencias);
+    printf("\nA LETRA %c FOI ENCONTRADA ", palpite);
+    if(ocorrencias == 1)
+        printf("1 VEZ.\n");
+    else
+        printf("%d VEZES.\n", ocorrencias);
     return 1;
 }
 
